@@ -1,6 +1,7 @@
 let filedrop;
 let sketch;
 let imageFile;
+let p5Instance;
 
 window.onload = () => {
 	filedrop = document.getElementById('filedrop');
@@ -28,7 +29,8 @@ handleDrop = (e) => {
 	if(item.kind === 'file'){
 		if (item.type.indexOf('image/') === 0) {
 			imageFile = URL.createObjectURL(item.getAsFile());
-			new p5(tetrisSketch, 'sketch');
+			if(p5Instance) p5Instance.remove();
+			p5Instance = new p5(legoSketch, 'sketch');
 		}else{
 			console.log(item);
 			console.log('Images, please.');
@@ -41,7 +43,8 @@ handleDrop = (e) => {
 					success => {
 						console.log(success);
 						imageFile = data;
-						new p5(tetrisSketch, 'sketch');
+						if(p5Instance) p5Instance.remove();
+						p5Instance = new p5(legoSketch, 'sketch');
 					}, 
 					() => console.log("Can't and/or won't")
 				);
@@ -62,8 +65,9 @@ handleClick = () => {
 		if (file.type.match("image.*")) {
 			const reader = new FileReader();
 			reader.onload = (e) => {
-				imageFile = e.target.result; 
-				new p5(tetrisSketch, 'sketch');
+				imageFile = e.target.result;
+				if(p5Instance) p5Instance.remove();
+				p5Instance = new p5(legoSketch, 'sketch');
 			};
 			reader.readAsDataURL(file);
 		}else{
@@ -99,10 +103,13 @@ testImage = (url, timeoutT) => {
     });
 }
 
-const tetrisSketch = (p) => {
+//**********************************************//
+
+const legoSketch = (p) => {
 	let img;
 	p.preload = () => {
-		img = p.loadImage(imageFile, ()=>{}, 
+		img = p.loadImage(imageFile, 
+			()=> {}, 
 			e => {
 				const pic = e.target;
 				pic.crossOrigin = null, pic.src = pic.src;
