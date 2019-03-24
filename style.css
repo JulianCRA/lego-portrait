@@ -9,8 +9,10 @@ html, body{
 	width: 100vw;
 	height: 100vh;
 	display: grid;
-	grid-template-columns: 5vw minmax(max-content, 90vw) 5vw;
-	grid-template-rows: 5vh minmax(max-content, 90vh) 5vh;
+	/*grid-template-columns: 5vw minmax(max-content, 90vw) 5vw;
+	grid-template-rows: 5vh minmax(max-content, 90vh) 5vh;*/
+	grid-template-columns: 5vw 90vw 5vw;
+	grid-auto-rows: 5vh 90vh 5vh;
 }
 
 .center{
@@ -36,8 +38,4 @@ html, body{
 	font-size: 5em;
 	user-select: none;
 	cursor: pointer;
-}
-
-#sketch{
-	background-color: aqua;
 }
