@@ -2,4 +2,45 @@ html, body{
 	margin: 0;
 	padding: 0;
 	background-color: #121212;
+	overflow: hidden;
+}
+
+#content{
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 5vw minmax(max-content, 90vw) 5vw;
+	grid-template-rows: 5vh minmax(max-content, 90vh) 5vh;
+}
+
+.center{
+	box-sizing: border-box;
+	grid-column: 2/3;
+	grid-row: 2/3;
+	width: 100%;
+	height: 100%;
+}
+
+.main{
+	z-index: 20;
+}
+
+.sub{
+	z-index: 19;
+}
+
+#filedrop{
+	border: 5px dashed #dddddd;
+	border-radius: 10px;
+	background-color: #bbbbbb;
+	color: #dddddd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 5em;
+	word-wrap: 
+}
+
+#sketch{
+	background-color: aqua;
 }
